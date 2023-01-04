@@ -107,6 +107,9 @@ public class Log4jBridgeHandler extends java.util.logging.Handler implements Pro
             for (java.util.logging.Handler hdl : rootLogger.getHandlers()) {
                 rootLogger.removeHandler(hdl);
             }
+			
+			if (rootLogger.getParent()!=null)
+				rootLoggersetUseParentHandlers(false);
         }
         rootLogger.addHandler(new Log4jBridgeHandler(false, suffixToAppend, propagateLevels));
         // note: filter-level of Handler defaults to ALL, so nothing to do here
